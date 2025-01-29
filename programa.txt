@@ -1,0 +1,8 @@
+x = 10;
+y = 20.5;
+z = "Hola, mundo!";
+if x > y then {
+    z = "x es mayor";
+} else {
+    z = "y es mayor";
+}
