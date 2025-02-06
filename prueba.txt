@@ -1,0 +1,90 @@
+// Ejemplo de código para prueba del lexer
+
+// Declaración de variables y asignaciones
+contador = 100;
+resultado = 0;
+mensaje = "Inicio de la prueba";
+
+// Uso de números enteros y reales
+numeroEntero = 42;
+numeroReal = 3.14159;
+otroNumero = 12345;
+valorDecimal = 0.9876;
+
+// Uso de cadenas y operadores aritméticos
+saludo = "Hola, mundo!";
+suma = 10 + 20;
+resta = 50 - 5;
+producto = 7 * 8;
+division = 100 / 4;
+
+// Uso de operadores lógicos y de comparación
+if (contador == 100) then {
+    mensaje = "Contador es igual a 100";
+} else {
+    mensaje = "Contador no es 100";
+}
+
+if (numeroEntero != 0) then {
+    resultado = numeroEntero + numeroReal;
+} else {
+    resultado = 0;
+}
+
+// Prueba de identificadores complejos
+variable_1 = 1;
+_variable2 = 2;
+valorTotal = variable_1 + _variable2;
+
+// Uso de paréntesis y llaves para agrupar expresiones
+sumaCompleja = (10 + 20) * (3 - 1);
+if ((sumaCompleja > 50) == true) then {
+    mensaje = "La suma compleja es mayor a 50";
+} else {
+    mensaje = "La suma compleja es menor o igual a 50";
+}
+
+// Secuencia de instrucciones con punto y coma
+x = 5; y = 10; z = x * y;
+
+// Introducción de caracteres desconocidos para probar el token 'UNKNOWN'
+caracterExtra = "#";
+otroCaracter = "@";
+
+// Espacios en blanco y saltos de línea intencionados:
+    // Estos espacios y tabulaciones se incluyen para comprobar el token WHITESPACE
+    
+if (valorDecimal < 1.0) then {
+    mensaje = "Valor decimal válido";
+} else {
+    mensaje = "Error en el valor decimal";
+}
+
+cadenaCompleja = "Esta es una cadena con espacios, comas, y símbolos: !@#$%^&*()";
+
+// Repetición de patrones para simular un archivo extenso
+for_i = 0;
+while_i = 0;
+if (for_i == while_i) then {
+    mensaje = "for_i es igual a while_i";
+} else {
+    mensaje = "for_i y while_i son diferentes";
+}
+
+// Varias líneas con combinaciones de tokens para testear el lexer:
+if (x == 5) then {
+    y = x + 15;
+    z = y - 2;
+    resultado = (x * y) / (z + 1);
+} else {
+    y = x - 15;
+    z = y + 2;
+    resultado = (x / y) + (z - 1);
+}
+
+// Más pruebas con operaciones y agrupamientos
+a = (3 + 4) * (5 - 2) / 7;
+b = a + 12.34 - 5 * 2;
+c = b / (a - 1);
+
+// Fin del archivo de prueba
