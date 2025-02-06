@@ -47,7 +47,6 @@ if ((sumaCompleja > 50) == true) then {
 // Secuencia de instrucciones con punto y coma
 x = 5; y = 10; z = x * y;
 
-// Introducción de caracteres desconocidos para probar el token 'UNKNOWN'
 caracterExtra = "#";
 otroCaracter = "@";
 
