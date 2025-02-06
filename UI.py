@@ -55,6 +55,18 @@ class UI:
         self.scrollbar = ttk.Scrollbar(self.table_frame, orient=tk.VERTICAL, command=self.token_table.yview)
         self.token_table.configure(yscrollcommand=self.scrollbar.set)
         self.scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        
+        self.center_window(root)
+
+    def center_window(self, window):
+        window.update_idletasks()
+        width = window.winfo_width()
+        height = window.winfo_height()
+        screen_width = window.winfo_screenwidth()
+        screen_height = window.winfo_screenheight()
+        x = (screen_width - width) // 2
+        y = (screen_height - height) // 2
+        window.geometry(f"{width}x{height}+{x}+{y}")
 
     def select_file(self):
         file_path = filedialog.askopenfilename(filetypes=[("Text files", "*.txt")])
