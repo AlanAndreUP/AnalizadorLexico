@@ -4,23 +4,36 @@ from typing import List, Tuple
 class Lexer:
     def __init__(self):
         self.tokens = [
-            ('COMMENT', r'//[^\n]*'),              # Comentarios (línea que inicia con //)
-            ('NUMBER', r'\d+(\.\d*)?'),           # Enteros y números reales
-            ('STRING', r'"[^"]*"'),                # Cadenas de caracteres
-            ('IDENTIFIER', r'[a-zA-Z_]\w*'),        # Identificadores (nombres de variables)
-            ('OPERATOR', r'[+\-*/]'),              # Operadores aritméticos
-            ('LOGICAL_OPERATOR', r'==|!=|<|>'),     # Operadores lógicos
-            ('ASSIGN', r'='),                      # Operador de asignación
-            ('IF', r'if'),                         # Palabra clave 'if'
-            ('THEN', r'then'),                     # Palabra clave 'then'
-            ('ELSE', r'else'),                     # Palabra clave 'else'
-            ('LPAREN', r'\('),                     # Paréntesis izquierdo
-            ('RPAREN', r'\)'),                     # Paréntesis derecho
-            ('LBRACE', r'\{'),                     # Llave izquierda
-            ('RBRACE', r'\}'),                     # Llave derecha
-            ('SEMICOLON', r';'),                   # Punto y coma
-            ('WHITESPACE', r'\s+'),                # Espacios en blanco
-            ('UNKNOWN', r'.'),                     # Cualquier otro carácter no reconocido
+            # Ignorar espacios en blanco y comentarios primero
+            ('WHITESPACE', r'\s+'),                        # Espacios en blanco, tabs y saltos de línea
+            ('COMMENT', r'//.*?\n'),                       # Comentarios - captura toda la línea hasta el salto
+            
+            # Literales
+            ('STRING', r'"(?:[^"\\]|\\.)*"'),             # Cadenas con soporte para caracteres escapados
+            ('NUMBER', r'\d+(\.\d+)?([eE][+-]?\d+)?'),    # Números con soporte para notación científica
+            
+            # Palabras clave - antes que identificadores para evitar conflictos
+            ('IF', r'\bif\b'),                            # Palabra clave 'if' con límites de palabra
+            ('THEN', r'\bthen\b'),                        # Palabra clave 'then' con límites de palabra
+            ('ELSE', r'\belse\b'),                        # Palabra clave 'else' con límites de palabra
+            
+            # Operadores - ordenados por longitud para evitar conflictos
+            ('LOGICAL_OPERATOR', r'==|!=|<=|>=|<|>'),     # Operadores lógicos expandidos
+            ('ASSIGN', r'='),                             # Operador de asignación
+            ('OPERATOR', r'[+\-*/]'),                     # Operadores aritméticos
+            
+            # Delimitadores
+            ('LPAREN', r'\('),                            # Paréntesis izquierdo
+            ('RPAREN', r'\)'),                            # Paréntesis derecho
+            ('LBRACE', r'\{'),                            # Llave izquierda
+            ('RBRACE', r'\}'),                            # Llave derecha
+            ('SEMICOLON', r';'),                          # Punto y coma
+            
+            # Identificadores - después de palabras clave
+            ('IDENTIFIER', r'[a-zA-Z_]\w*'),              # Identificadores
+            
+            # Token de error - siempre al final
+            ('UNKNOWN', r'.'),                            # Cualquier otro carácter no reconocido
         ]
 
     def tokenize(self, code: str) -> List[Tuple[str, str]]:
