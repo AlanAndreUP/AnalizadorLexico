@@ -47,7 +47,13 @@ class Lexer:
                 match = regex.match(code, pos)
                 if match:
                     value = match.group(0)
-                    # Ignorar espacios en blanco y comentarios
+                    if token_name == "NUMBER" and pos + len(value) < len(code) and code[pos + len(value)].isalpha():
+                        error_match = re.match(r'\d+[a-zA-Z_]\w*', code[pos:])  # Capturar toda la palabra
+                        if error_match:
+                            value = error_match.group(0)
+                        tokens_found.append(("UNKNOWN", value))
+                        pos += len(value)
+                        break
                     if token_name not in ['WHITESPACE', 'COMMENT']:
                         tokens_found.append((token_name, value))
                     pos = match.end()
