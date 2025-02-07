@@ -6,3 +6,16 @@ if x > y then {
 } else {
     z = "y es mayor";
 }
+
+psto59;
+
+int 23feo=12;
+
+if (24pepo!=12)
+{
+
+}
+float pepito#perez_pereyra12; <> && != ==
+
+ gaotgranmdeyvporauesecomelapobreraton_$ y ya
+

@@ -11,7 +11,7 @@ class Lexer:
             # Literales
             ('STRING', r'"(?:[^"\\]|\\.)*"'),             # Cadenas con soporte para caracteres escapados
             ('NUMBER', r'\d+(\.\d+)?([eE][+-]?\d+)?'),    # Números con soporte para notación científica
-            ('BOOLEAN', r'\btrue\b|\bfalse\b'),      # Booleanos
+            ('BOOLEAN', r'\btrue\b|\bfalse\b'),           # Booleanos
 
             # Palabras clave - antes que identificadores para evitar conflictos
             ('IF', r'\bif\b'),                            # Palabra clave 'if' con límites de palabra
